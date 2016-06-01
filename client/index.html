@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fr-fr">
+  
+  <head>
+    
+    <title>Calembo.ur, explorateur de noms de domaine sympas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAqKv8KDg65qAsLr94ZGciLMjL/C7Oz/wn///8FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8AERGwoAICuf8CAr3/AwO3/xISs8lxcf9Tpqb/DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMzP0PAUFp/0FBaf/AwO3/wUFtfo/P/98fHz/Sf///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABISoasHB5T/FBSfqhkZk0I6Ovd9cHD/Yv///xQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPD7PMBASg/xMTqWkAAAAAysr/E1JS/2gaGqhQMTH/GgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADw+5uAQEqv8KCqrpFRW2fwwMr+MDA67/AwOv/wgIrfUfH9dU////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADEx/zEHB7DsAwO2/wQEr/8EBKn/AgK9/wICuP8EBK//BASu/RkZwo9hYf8HAAD/Pf///wMaGs1TEhKmsA8PptwWFrCrCwui3QQEqv8DA7X/BASp/wYGpPoICKb4AwO1/wICuv8DA7P/ExO6vgIC/zEUFLuZBASw/wMDtP8CArn/BQWg/wICtf8EBK//AwO3/wgIrO1+fv8SNjb/HA0NqcECArr/CQnKywYG/1wAAP8nCQm73wUFqP4KCqznCwuh7QQEqf8CArv/AgK//wQEqP8WFr+q////AAAAAADKyv8BFRXWgg8P/2YAAP8/AAAAAAoKnfALC5/o4OD/BSkpzEUCAr3/AgK7/wEBwP8HB533Hh7fQQAAAAAAAAAAAAAAAAAA/w4AAP9RAAD/AAAAAAAKCqTpAwOj/wsLp8sQEMGEDQ2d3QQEpP8HB5f/FxeikQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALi72VQUFoP8FBZ3/BASg/wUFnP8EBKL/DAyd7yws/y8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHh4/wAYGMhYEBDAxwwMsdgJCaPyERG3qjY2/yIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAnJz/BP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAPgPAADwDwAA8A8AAPAfAADxDwAA8AMAAPAAAAAAAAAAAAAAAAAhAAAAcQAAAP8AAAD/AAAB/wAA8/8AAA==" rel="icon" type="image/x-icon">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-inview/1.5.7/angular-inview.min.js"></script>
+    <script src="js/script.js" defer></script>
+    
+  </head>
+  
+  <body ng-app="calembour">
+    
+    <section ng-controller="ctrl" class="container">
+      
+      <header>
+        <h1 class="text-center" title="Non, le .ur n'existe pas...">Calembo<span>.</span>ur</h1>
+      </header>
+      
+      <section class="col-sm-6">
+        
+        <h2><small>Noms de domaine :</small></h2>
+        
+        <ul id="names" class="list-unstyled table table-bordered" in-view-container>
+          
+          <li in-view="warnMe(name)" in-view-options="{ debounce: 300 }" ng-repeat="name in names | filter:{ ext: { selected:true }, display:true } | orderBy:'name'"
+            ng-class="{'bg-success' : name.available, 'bg-danger': name.loaded && !name.available, 'notLoadedYet': !name.loaded}">
+            <span>{{name.name}}</span><span class="point">.</span><span>{{name.ext.name}}</span>
+          </li>
+          
+        </ul>
+        
+        <menu>
+          <div class="checkbox">
+            <label>
+              <input id="displayUnavailable" type="checkbox" ng-click="displayUnavailable()" checked/>afficher les noms indisponibles
+            </label>
+          </div>
+        </menu>
+        
+      </section>
+      
+      <section class="col-sm-6">
+        
+        <h2><small>Extensions :</small></h2>
+        
+        <ul id="extensions" class="list-inline">
+          <li ng-repeat="ext in extensions | orderBy:'name'">
+            <a class="label label-default" ng-class="{'label-success' : ext.selected}" ng-click="clickDomain(ext)" >.{{ext.name}}</a>
+          </li>
+        </ul>
+        
+      </section>
+      
+      <footer>
+        <em><small>Explorateur de noms de domaine sympas… Développé avec amour par <a href="#" title="En fait j'ai pas de site, je fais juste genre, mais merci d'avoir voulu cliquer, vous me touchez vachement">CobaltLab</a></small></em>
+      </footer>
+      
+    </section>
+    
+  </body>
+  
+</html>

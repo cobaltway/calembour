@@ -1,0 +1,75 @@
+h1 {
+    border-bottom: thin solid rgba(150,150,150,0.3);
+}
+
+h1 span {
+    color: #337ab7;
+    font-weight: 700;
+    font-family: monospace;
+}
+
+
+.container {
+    margin-top: 4%;
+    padding-top: 1%;
+    padding-bottom: 0.5%;
+    margin-bottom: 4%;
+    border: thin solid rgba(150,150,150,0.2);
+    background-color: #f7f7f9;
+    border-radius: 20px;
+}
+
+#names {
+    height:300px;
+    overflow: auto;
+    font-weight: bold;
+}
+
+#names li {
+    padding-left: 5%;
+    border-bottom: thin solid rgba(150,150,150,0.1);
+}
+
+.notLoadedYet:after {
+    content: "?";
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 50px;
+    color: white;
+    font-family: monospace;
+    margin-left: 1em;
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+    font-size: large;
+}
+
+#extensions li {
+    display: inline-block;
+    width: 100px;
+    height: 20px;
+}
+
+label {
+    display:inline !important;
+    font-size: larger;
+}
+
+.point {
+    font-size: x-large;
+    font-family: monospace;
+}
+
+footer {
+    padding-top: 52%;
+}
+
+footer small {
+    font-size: smaller;
+}
+
+a.label:hover {
+    background-color: lightgrey;
+}
+
+a.label-success:hover {
+    background-color: green;
+}
